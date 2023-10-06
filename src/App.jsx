@@ -17,7 +17,27 @@ export const App = () => {
   // //   const result = await response.json()
   // //   console.log(result)
   // }
+
+  export const PostMessage = () => {
+    const [newPost, setNewPost] = useState("")
+    const options = {
+      method: "POST",
+      body: JSON.stringify({
+        message: `${newPost}`,
+      }),
+      headers: { "Content-Type": "application/json" },
+    }
+    await fetch("https://happy-thoughts-ux7hkzgmwa-uc.a.run.app/thoughts", options)
+    .then((response) => response.json())
+    .then((data) => {
+
+    })
+  }
   return <div>
+    <form onSubmit={PostMessage}>
+      <textarea value={newPost} onChange={(e) => setNewPost(e.target.value)}></textarea>
+    </form>
+    <button type="submit">submit</button>
     <ul>
       {messageList.map((list, index) => (
         <li key={index}>{list.message} {list.hearts} {list.createdAt}</li>
