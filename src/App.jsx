@@ -21,6 +21,7 @@ export const App = () => {
 
   const PostMessage = async () => {
     // const [newPost, setNewPost] = useState("")
+    // event.preventDefault()
     const options = {
       method: "POST",
       body: JSON.stringify({
@@ -31,7 +32,9 @@ export const App = () => {
     await fetch("https://happy-thoughts-ux7hkzgmwa-uc.a.run.app/thoughts", options)
     .then((response) => response.json())
     .then((data) => {
-      setMessageList([data, ...messageList])
+      // setMessageList([data, ...messageList])
+      setMessageList((prevMessageList) => [data, ...prevMessageList])
+      // setNewPost("")
     })
   }
   return <div>
