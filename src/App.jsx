@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 export const App = () => {
   const [messageList, setMessageList] = useState([])
+  const [newPost, setNewPost] = useState("")
   const getResult = () => {
     fetch("https://happy-thoughts-ux7hkzgmwa-uc.a.run.app/thoughts")
     .then((res) => res.json())
@@ -18,8 +19,8 @@ export const App = () => {
   // //   console.log(result)
   // }
 
-  export const PostMessage = () => {
-    const [newPost, setNewPost] = useState("")
+  const PostMessage = async () => {
+    // const [newPost, setNewPost] = useState("")
     const options = {
       method: "POST",
       body: JSON.stringify({
@@ -30,7 +31,7 @@ export const App = () => {
     await fetch("https://happy-thoughts-ux7hkzgmwa-uc.a.run.app/thoughts", options)
     .then((response) => response.json())
     .then((data) => {
-
+      setMessageList([data, ...messageList])
     })
   }
   return <div>
