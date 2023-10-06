@@ -20,7 +20,7 @@ export const App = () => {
   return <div>
     <ul>
       {messageList.map((list, index) => (
-        <li key={index}>{list.message}</li>
+        <li key={index}>{list.message} {list.hearts} {list.createdAt}</li>
       ))}
     </ul>
     {/* <iframe 
