@@ -1,14 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export const App = () => {
   const [messageList, setMessageList] = useState([])
   const getResult = () => {
     fetch("https://happy-thoughts-ux7hkzgmwa-uc.a.run.app/thoughts")
     .then((res) => res.json())
-    .then((data) => )setMessageList(data)
+    .then((data) => setMessageList(data))
   }
 
-  useState(() => {
+  useEffect(() => {
     getResult()
   }, [])
   
@@ -18,9 +18,14 @@ export const App = () => {
   // //   console.log(result)
   // }
   return <div>
-    <iframe 
+    <ul>
+      {messageList.map((list, index) => (
+        <li key={index}>{list.message}</li>
+      ))}
+    </ul>
+    {/* <iframe 
     src="https://happy-thoughts-ux7hkzgmwa-uc.a.run.app/thoughts" 
     style={{border: 'none', width: '100%', height: 350}}>
-      </iframe>
+      </iframe> */}
       </div>;
 };
